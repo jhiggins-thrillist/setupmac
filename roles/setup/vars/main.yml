@@ -34,6 +34,7 @@ cask_applications:
   - alfred
   - bettertouchtool
   - viscosity
+  - transmission
   - keka
   - bartender
   - slack
@@ -41,8 +42,14 @@ cask_applications:
   - ableton-live-suite
   - starcraft
   - dosbox
+  - spotify
+  - tidal
+  - keybase
+  - vlc
 
-downloads:
+# npm_modules:
+
+# downloads:
    # zwift:
    #   name: Zwift
    #   url: http://cdn.zwift.com/app/ZwiftOSX.dmg
