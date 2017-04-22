@@ -1,8 +1,12 @@
 - name: application installs
   include: apps.yml 
 
+- name: code
+  include: code.yml
+
 - name: configuration
   include: configuration.yml
+  tags: configuration
 
 - name: dotfiles
   include: dotfiles.yml

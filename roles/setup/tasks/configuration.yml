@@ -1,57 +1,52 @@
 ---
 # doing configuration
 
-- name: create project directory
-  file:
-    path: "{{general.local_home}}/Projects"
-    state: directory
-
-- name: checking out thrillist development environments
-  git:
-    repo: https://github.com/thrillist/vagrant
-    dest: "{{general.local_home}}/Projects/vagrant"
-
 - name: adding development hosts
+  become: yes
   lineinfile:
     path: /etc/hosts
     line: '# development hosts'
     owner: root
-    group: root
+    group: wheel
     mode: 0644
 
 - name: adding dev.thrillist.com to /etc/hosts
+  become: yes
   lineinfile:
     path: /etc/hosts
     line: '192.168.56.189 dev.thrillist.com'
     owner: root
-    group: root
+    group: wheel
     mode: 0644
     insertafter: '^# development hosts'
 
 - name: adding dev.seeker.com to /etc/hosts
+  become: yes
   lineinfile:
     path: /etc/hosts
     line: '192.168.56.189 dev.seeker.com'
     owner: root
-    group: root
+    group: wheel
     mode: 0644
     insertafter: '^# development hosts'
 
 - name: adding dev.thedodo.com to /etc/hosts
+  become: yes
   lineinfile:
     path: /etc/hosts
     line: '192.168.56.189 dev.thedodo.com'
     owner: root
-    group: root
+    group: wheel
     mode: 0644
     insertafter: '^# development hosts'
 
 - name: adding dev.groupninemedia.com to /etc/hosts
+  become: yes
   lineinfile:
     path: /etc/hosts
     line: '192.168.56.189 dev.groupninemedia.com'
     owner: root
-    group: root
+    group: wheel
     mode: 0644
     insertafter: '^# development hosts'
 

@@ -10,7 +10,6 @@ applications:
   - wget
   - zsh
   - vim
-  - aria2c
   - htop
   - nvm
   - nmap
