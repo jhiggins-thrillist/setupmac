@@ -1,9 +1,0 @@
-- name: create project directory
-  file:
-    path: "{{general.local_home}}/Projects"
-    state: directory
-
-- name: checking out thrillist development environments
-  git:
-    repo: https://github.com/thrillist/vagrant
-    dest: "{{general.local_home}}/Projects/vagrant"

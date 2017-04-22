@@ -3,4 +3,6 @@
 
 - hosts: mac 
   roles:
+    - ssh
     - setup
+    - dev

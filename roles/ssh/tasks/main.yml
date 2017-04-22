@@ -1,0 +1,11 @@
+---
+
+# Check if files do not already exist
+- name: Check state
+  include: state.yml
+
+- name: Create keys
+  include: create_keys.yml
+
+- name: Add configuration
+  include: config.yml

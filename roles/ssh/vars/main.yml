@@ -1,0 +1,12 @@
+---
+# SSH Configuration
+# ssh-keygen [-q] [-b bits] [-t dsa | ecdsa | ed25519 | rsa | rsa1]
+#            [-N new_passphrase] [-C comment] [-f output_keyfile]
+
+ssh:
+  dir: "{{ lookup('env','HOME') }}/.ssh"
+  user: "{{ lookup('env', 'USER') }}"
+  bits: "4096"
+  dsa: "rsa"
+  new_passphrase: "''"
+  output_keyfile: "jhiggins_groupninemedia_id_rsa"

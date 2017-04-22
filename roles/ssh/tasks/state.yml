@@ -1,0 +1,30 @@
+
+# Make sure directory is present
+- name: Create .ssh directory
+  file:
+    path: "{{ssh.dir}}"
+    state: directory
+
+# Get file states
+- name: Check if SSH private key exists
+  stat:
+    path: "{{ssh.dir}}/{{ssh.output_keyfile}}"
+  register: ssh_priv_key
+
+- name: Check if SSH public key exists
+  stat:
+    path: "{{ssh.dir}}/{{ssh.output_keyfile}}.pub"
+  register: ssh_public_key
+
+# Catch file errors
+- fail:
+    msg: "Private key exists but public key does not"
+  when:
+    - ssh_priv_key.stat.exists == True
+    - ssh_public_key.stat.exists == False
+
+- fail:
+    msg: "Public key exists but private key does not"
+  when:
+    - ssh_priv_key.stat.exists == False
+    - ssh_public_key.stat.exists == True

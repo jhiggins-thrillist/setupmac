@@ -1,12 +1,16 @@
-- name: application installs
-  include: apps.yml 
+# - name: application installs
+#   include: apps.yml
+#   tags:
+#     - apps
 
-- name: code
-  include: code.yml
+# - name: hosts
+#   include: hosts.yml
+#   tags:
+#     - hosts
+#     - development
 
-- name: configuration
-  include: configuration.yml
-  tags: configuration
-
+# Install themes, fonts, dotfiles
 - name: dotfiles
   include: dotfiles.yml
+  tags:
+    - dotfiles

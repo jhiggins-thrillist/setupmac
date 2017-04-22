@@ -1,4 +1,30 @@
 ---
+
+# Color Schemes
+- name: Create colorschemes directory
+  file:
+    path: "{{general.local_home}}/Themes/Colors"
+    state: directory
+
+- name: Tomorrow Night
+  git:
+    repo: git@github.com:chriskempson/tomorrow-theme.git
+    dest: "{{general.local_home}}/Themes/Colors/tomorrow-theme"
+
+# Fonts
+- name: Create fonts directory
+  file:
+    path: "{{general.local_home}}/Themes/Fonts"
+    state: directory
+
+- name: ProgrammingFonts
+  git:
+    repo: git@github.com:ProgrammingFonts/ProgrammingFonts.git
+    dest:  "{{general.local_home}}/Themes/Fonts/ProgrammingFonts"
+
+- name: Install fonts
+  shell: "find {{general.local_home}}/Themes/Fonts/ProgrammingFonts -type f -iname '*.otf' -exec cp {} ~/Library/Fonts \\;"
+  
 # getting my dotfile configuration
 
 # - name: setting up my dotfiles
@@ -20,3 +46,35 @@
 #   file:
 #     path: /tmp/dotfiles
 #     state: absent
+
+# - name: setting up zsh with oh-my-zsh
+#   git:
+#     repo: https://github.com/robbyrussell/oh-my-zsh.git
+#     dest: "{{general.local_home}}/.oh-my-zsh"
+
+# - name: getting dracula theme for oh-my-zsh
+#   git:
+#     repo: https://github.com/dracula/zsh.git
+#     dest: "{{general.local_home}}/.oh-my-zsh_dracula_theme"
+
+# - name: sym linking oh-my-zsh theme
+#   file:
+#     src: "{{general.local_home}}/.oh-my-zsh_dracula_theme/dracula.zsh-theme"
+#     dest: "{{general.local_home}}/.oh-my-zsh/themes/dracula.zsh-theme"
+#     state: link
+
+# - name: setting up emacs with spacemacs 
+#   git:
+#     repo: https://github.com/syl20bnr/spacemacs
+#     dest: "{{general.local_home}}/.emacs.d"
+
+# - name: create workspace directories
+#   file:
+#     path: "{{general.local_home}}/workspace"
+#     state: directory
+
+# - name: create GOPATH directory
+#   file:
+#     path: "{{general.local_home}}/workspace/go"
+#     state: directory
+

@@ -1,0 +1,19 @@
+# Get file stat
+- stat: 
+    path: "{{ssh.dir}}/{{ssh.output_keyfile}}"
+  register: ssh_file
+
+# Generate Github Key
+- name: generate SSH key for github
+  shell: "ssh-keygen -b {{ssh.bits}} -t {{ssh.dsa}} -f {{ssh.dir}}/{{ssh.output_keyfile}} -q -N {{ssh.new_passphrase}}"
+  register: ssh_keygen
+  args:
+    creates: "{{ssh.dir}}/{{ssh.output_keyfile}}"
+  when:
+    - ssh_file.stat.exists == False
+
+- set_fact:
+    created_keys: true
+
+- name: Add key to ssh-agent
+  shell: "ssh-add -K {{ssh.dir}}/{{ssh.output_keyfile}}"

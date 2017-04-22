@@ -1,0 +1,36 @@
+---
+
+- name: Add Host
+  lineinfile:
+    path: "{{ssh.dir}}/config"
+    line: "Host github"
+    state: present
+
+- name: Add IdentityFile
+  lineinfile:
+    path: "{{ssh.dir}}/config"
+    regexp: "IdentityFile"
+    line: "    IdentityFile {{ssh.dir}}/{{ssh.output_keyfile}}"
+    insertafter: "^Host github.com$"
+    state: present
+
+- name: Add AddKeysToAgent
+  lineinfile:
+    path: "{{ssh.dir}}/config"
+    line: '    AddKeysToAgent yes'
+    insertafter: "^    IdentityFile {{ssh.dir}}/{{ssh.output_keyfile}}"
+    state: present
+
+- name: Add UseKeychain
+  lineinfile:
+    path: "{{ssh.dir}}/config"
+    line: '    UseKeychain yes'
+    insertafter: "^    AddKeysToAgent yes"
+    state: present
+
+- name: Add HostName
+  lineinfile:
+    path: "{{ssh.dir}}/config"
+    line: '    HostName github.com'
+    insertafter: "^    UseKeychain yes"
+    state: present

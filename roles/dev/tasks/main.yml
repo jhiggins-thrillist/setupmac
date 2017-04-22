@@ -1,0 +1,20 @@
+---
+
+# Modify /etc/hosts
+- name: hosts
+  include: hosts.yml
+  tags:
+    - hosts
+    - development
+
+- name: Create github project directory
+  file:
+    path: "{{general.local_home}}/Projects"
+    state: directory
+
+- name: Check out vagrant dev environments
+  git:
+    repo: git@github.com:Thrillist/vagrant.git
+    dest: "{{general.local_home}}/Projects/vagrant"
+    accept_hostkey: true
+  ignore_errors: true
