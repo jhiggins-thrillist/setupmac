@@ -1,36 +1,91 @@
 ---
 # doing configuration
 
-- name: setting up zsh with oh-my-zsh
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh.git
-    dest: "{{general.local_home}}/.oh-my-zsh"
-
-- name: getting dracula theme for oh-my-zsh
-  git:
-    repo: https://github.com/dracula/zsh.git
-    dest: "{{general.local_home}}/.oh-my-zsh_dracula_theme"
-
-- name: sym linking oh-my-zsh theme
+- name: create project directory
   file:
-    src: "{{general.local_home}}/.oh-my-zsh_dracula_theme/dracula.zsh-theme"
-    dest: "{{general.local_home}}/.oh-my-zsh/themes/dracula.zsh-theme"
-    state: link
-
-- name: setting up emacs with spacemacs 
-  git:
-    repo: https://github.com/syl20bnr/spacemacs
-    dest: "{{general.local_home}}/.emacs.d"
-
-- name: create workspace directories
-  file:
-    path: "{{general.local_home}}/workspace"
+    path: "{{general.local_home}}/Projects"
     state: directory
 
-- name: create GOPATH directory
-  file:
-    path: "{{general.local_home}}/workspace/go"
-    state: directory
+- name: checking out thrillist development environments
+  git:
+    repo: https://github.com/thrillist/vagrant
+    dest: "{{general.local_home}}/Projects/vagrant"
+
+- name: adding development hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '# development hosts'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: adding dev.thrillist.com to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '192.168.56.189 dev.thrillist.com'
+    owner: root
+    group: root
+    mode: 0644
+    insertafter: '^# development hosts'
+
+- name: adding dev.seeker.com to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '192.168.56.189 dev.seeker.com'
+    owner: root
+    group: root
+    mode: 0644
+    insertafter: '^# development hosts'
+
+- name: adding dev.thedodo.com to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '192.168.56.189 dev.thedodo.com'
+    owner: root
+    group: root
+    mode: 0644
+    insertafter: '^# development hosts'
+
+- name: adding dev.groupninemedia.com to /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    line: '192.168.56.189 dev.groupninemedia.com'
+    owner: root
+    group: root
+    mode: 0644
+    insertafter: '^# development hosts'
+
+
+# - name: setting up zsh with oh-my-zsh
+#   git:
+#     repo: https://github.com/robbyrussell/oh-my-zsh.git
+#     dest: "{{general.local_home}}/.oh-my-zsh"
+
+# - name: getting dracula theme for oh-my-zsh
+#   git:
+#     repo: https://github.com/dracula/zsh.git
+#     dest: "{{general.local_home}}/.oh-my-zsh_dracula_theme"
+
+# - name: sym linking oh-my-zsh theme
+#   file:
+#     src: "{{general.local_home}}/.oh-my-zsh_dracula_theme/dracula.zsh-theme"
+#     dest: "{{general.local_home}}/.oh-my-zsh/themes/dracula.zsh-theme"
+#     state: link
+
+# - name: setting up emacs with spacemacs 
+#   git:
+#     repo: https://github.com/syl20bnr/spacemacs
+#     dest: "{{general.local_home}}/.emacs.d"
+
+# - name: create workspace directories
+#   file:
+#     path: "{{general.local_home}}/workspace"
+#     state: directory
+
+# - name: create GOPATH directory
+#   file:
+#     path: "{{general.local_home}}/workspace/go"
+#     state: directory
 
 
 
