@@ -14,6 +14,8 @@ applications:
   - nvm
   - nmap
   - screen
+  - hub
+  - zplug
 
 # homebrew cask applications
 cask_applications:
