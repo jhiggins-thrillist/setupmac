@@ -24,6 +24,24 @@
 
 - name: Install fonts
   shell: "find {{general.local_home}}/Themes/Fonts/ProgrammingFonts -type f -iname '*.otf' -exec cp {} ~/Library/Fonts \\;"
+
+# Dotfiles
+- name: Clone zprezto dotfiles
+  git:
+    repo: git@github.com:jhiggins-thrillist/prezto.git
+    dest: "{{general.local_home}}/.zprezto"
+
+- name: Symlink .zshrc
+  file:
+    src: "{{general.local_home}}/.zprezto/zshrc"
+    dest: "{{general.local_home}}/.zshrc"
+    state: "link"
+
+- name: Symlink .zprofile
+  file:
+    src: "{{general.local_home}}/.zprezto/.zprofile"
+    dest: "{{general.local_home}}/.zprofile"
+    state: "link"
   
 # getting my dotfile configuration
 

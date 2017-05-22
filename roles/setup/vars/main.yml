@@ -16,6 +16,7 @@ applications:
   - screen
   - hub
   - zplug
+  - direnv
 
 # homebrew cask applications
 cask_applications:
@@ -47,10 +48,13 @@ cask_applications:
   - tidal
   - keybase
   - vlc
+  - aerial
+  - sysex-librarian
+  - imageoptim
 
 # npm_modules:
 
-# downloads:
+# downloads:arinargin
    # zwift:
    #   name: Zwift
    #   url: http://cdn.zwift.com/app/ZwiftOSX.dmg
